@@ -10,7 +10,6 @@ export const DragDrop = props => {
       onClick={() => inputBox.current.click()}
       onDrop={e => {
         e.preventDefault();
-        e.persist();
         props.setImage(e.dataTransfer.files);
         setDrag(false);
       }}
