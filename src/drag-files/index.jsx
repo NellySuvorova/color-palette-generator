@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 import Container from "./Container";
 
-export const DragDrop = props => {
+const DragDrop = props => {
   const inputBox = useRef(null);
   const [drag, setDrag] = useState(false);
   return (
@@ -35,3 +35,5 @@ export const DragDrop = props => {
     </Container>
   );
 };
+
+export { DragDrop };

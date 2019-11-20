@@ -4,9 +4,8 @@ import { ImageProvider, ImageConsumer } from "./context";
 
 import { DragDrop } from "./drag-files";
 
-function App() {
-  const [image, setImage] = useState(null);
-  console.log(image);
+const App = () => {
+  const [image, setImage] = useState();
   return (
     <ImageProvider value={{ image, setImage }}>
       <ImageConsumer>
@@ -16,6 +15,6 @@ function App() {
       </ImageConsumer>
     </ImageProvider>
   );
-}
+};
 
 export default App;
