@@ -5,12 +5,28 @@ import Container from "./Container";
 const DragDrop = props => {
   const inputBox = useRef(null);
   const [drag, setDrag] = useState(false);
+
+  const handleImage = file => {
+    const reader = new FileReader();
+    const img = document.querySelector("img");
+    reader.onloadend = function() {
+      img.src = reader.result;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      img.src = "";
+    }
+    return img;
+  };
+
   return (
     <Container
       onClick={() => inputBox.current.click()}
       onDrop={e => {
         e.preventDefault();
-        props.setImage(e.dataTransfer.files);
+        props.setImage(handleImage(e.dataTransfer.files[0]));
         setDrag(false);
       }}
       onDragOver={e => {
@@ -29,7 +45,7 @@ const DragDrop = props => {
         accept="image/*"
         ref={inputBox}
         onChange={e => {
-          props.setImage(e.target.files);
+          props.setImage(handleImage(e.target.files[0]));
         }}
       />
     </Container>
